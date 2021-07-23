@@ -25,31 +25,20 @@ class EmployeeEntry extends React.Component {
     let name, role, department, location;
 
     if (this.props.name) {
-      name = <h2 className="align-items-center">{this.props.name}</h2>
+      name = <h2>{this.props.name}</h2>
     }
 
     if (this.props.role) {
-      role = <p className="col-3">Role: {this.props.role}</p>
+      role = <p className="col-12 col-md-4">Role: {this.props.role}</p>
     }
 
     if (this.props.department) {
-      department = <p className="col-3">Department: {this.props.department}</p>
+      department = <p className="col-12 col-md-4">Department: {this.props.department}</p>
     }
 
     if (this.props.location) {
-      location = <p className="col-3">Location: {this.props.location}</p>
+      location = <p className="col-12 col-md-4">Location: {this.props.location}</p>
     }
-
-    // if (this.state && !this.state.errorMessage) {
-    // insert current return
-    // }
-    //
-    // return (
-    // <React.Fragment>
-    //   <CircularProgress />
-    // </React.Fragment>
-    // )
-
 
     return (
       <div className="employee-entry row justify-content-start">
@@ -60,16 +49,6 @@ class EmployeeEntry extends React.Component {
       </div>
     );
   }
-
-  // componentDidMount() {
-  // insert API call here, on success use setState
-  // testAPICall(
-  // success => setState blah
-  // err => setState error blah
-  // )
-  // }
-  // componentDidUpdate() -- on this.setState, executes, load data onc changing
-  // componentWillUnmount() -- calls on component being unshown, good place for cleanup
 }
 
 export default EmployeeEntry;

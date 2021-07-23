@@ -1,7 +1,7 @@
 import '../../assets/css/App.css';
 import React from 'react';
 import EmployeeEntry from '../EmployeeEntry/EmployeeEntry.js';
-import SearchBar from '../SearchBar/SearchBar.js';
+import AddEmployee from '../AddEmployee/AddEmployee.js';
 
 class App extends React.Component {
   state = {
@@ -45,21 +45,18 @@ class App extends React.Component {
     ]
   }
 
-  // addEmployee = (event) => {
-  //   let newEmployee = event
-  //   let employees = this.state.employees;
-  //   employees.push()
-  // };
-
-  onSearchSubmit(searchQuery) {
-    console.log("search query", searchQuery);
-  }
+  addNewEmployee = (newEmployee) => {
+    let employeeList = this.state.employees;
+    employeeList.push(newEmployee);
+    this.setState({employees: employeeList});
+  };
 
   render() {
     return (
       <div className="App container-fluid">
         <h1 className="text-center">Employee Directory</h1>
-        <SearchBar onSubmit={this.onSearchSubmit} />
+        <AddEmployee onSubmit={this.addNewEmployee} />
+
         {this.state.employees && this.state.employees.map(employee =>
           <EmployeeEntry
             name={employee.name}
