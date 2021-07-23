@@ -3,23 +3,25 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    searchQuery: ""
+  };
 
-    this.state = {
-      searchQuery: ""
-    };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.onSubmit();
   }
 
   render() {
     return (
       <div className="search-bar row">
-        <FormControl>
+        <FormControl onSubmit={this.onFormSubmit}>
           <TextField
             id="employee-search"
             label="Employee Search"
             variant="outlined"
-            defaultValue={this.state.searchQuery}
+            value={this.state.searchQuery}
             onChange={(event) => {
               this.setState({searchQuery: event.target.value});
             }}
