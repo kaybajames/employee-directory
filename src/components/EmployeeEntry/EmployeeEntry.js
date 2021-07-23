@@ -36,6 +36,17 @@ class EmployeeEntry extends React.Component {
       location = <p className="col-3">Location: {this.props.location}</p>
     }
 
+    // if (this.state && !this.state.errorMessage) {
+    // insert current return
+    // }
+    //
+    // return (
+    // <React.Fragment>
+    //   <CircularProgress />
+    // </React.Fragment>
+    // )
+
+
     return (
       <div className="employee-entry row justify-content-start">
         {name}
