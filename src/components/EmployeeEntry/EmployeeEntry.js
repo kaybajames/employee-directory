@@ -16,12 +16,16 @@ class EmployeeEntry extends React.Component {
     };
   }
 
+  // renderContent() {
+  // add error conditionals in here and not in main render
+  // }
+
   render () {
     // for api change to state later: const name= = this.state.name
     let name, role, department, location;
 
     if (this.props.name) {
-      name = <h2 class="align-items-center">{this.props.name}</h2>
+      name = <h2 className="align-items-center">{this.props.name}</h2>
     }
 
     if (this.props.role) {
