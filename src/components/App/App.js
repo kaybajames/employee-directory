@@ -45,6 +45,22 @@ class App extends React.Component {
     ]
   }
 
+  // employee list created in localStorage to demonstrate employee modification
+  componentDidMount() {
+    const employeeJSON = localStorage.getItem("employees");
+    const employeeListFromBrowser = JSON.parse(employeeJSON);
+    console.log(employeeListFromBrowser);
+    if (employeeListFromBrowser) {
+      this.setState({employees: employeeListFromBrowser});
+    }
+  }
+
+  // likewise, demonstrating adding employees
+  componentDidUpdate(prevProps, prevState) {
+    const employeeJSON = JSON.stringify(this.state.employees);
+    localStorage.setItem("employees", employeeJSON)
+  }
+
   addNewEmployee = (newEmployee) => {
     let employeeList = this.state.employees;
     employeeList.push(newEmployee);
