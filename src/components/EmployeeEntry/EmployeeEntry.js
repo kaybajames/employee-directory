@@ -1,24 +1,14 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 
 class EmployeeEntry extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: null, // title, first, last properties
-      role: null, // not auto generated
-      department: null, // not auto generated
-      location: null, // street, city, state, postcode properties, timezone.description and timezone.offset
-      email: null,
-      phone: null,
-      picture: null, //picture.large, medium, thumbnail
-      errorMessage: null
-    };
   }
 
-  // renderContent() {
-  // add error conditionals in here and not in main render
-  // }
+  deleteItem = (event) => {
+    this.props.deleteItem(this.props.id);
+  }
 
   render () {
     // for api change to state later: const name= = this.state.name
@@ -46,6 +36,12 @@ class EmployeeEntry extends React.Component {
         {role}
         {department}
         {location}
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.deleteItem}>
+            Delete Employee
+        </Button>
       </div>
     );
   }

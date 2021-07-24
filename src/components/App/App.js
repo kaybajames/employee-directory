@@ -10,37 +10,43 @@ class App extends React.Component {
         name: "Kay James",
         role: "Senior Technomancer",
         department: "Technology",
-        location: "New York, NY"
+        location: "New York, NY",
+        id: 0
       },
       {
         name: "John Nowak",
         role: "Junior Technomancer",
         department: "Technology",
-        location: "Rochester, NY"
+        location: "Rochester, NY",
+        id: 1
       },
       {
         name: "Road Runner",
         role: "QA Tester",
         department: "Technology",
-        location: "Looney Tunes, CA"
+        location: "Looney Tunes, CA",
+        id: 2
       },
       {
         name: "Wile E. Coyote",
         role: "Product Manager",
         department: "Technology",
-        location: "Looney Tunes, CA"
+        location: "Looney Tunes, CA",
+        id: 3
       },
       {
         name: "Joel Grind",
         role: "Staff Artist",
         department: "Media",
-        location: "Portland, OR"
+        location: "Portland, OR",
+        id: 4
       },
       {
         name: "Daffy Duck",
         role: "Director of Communications",
         department: "Marketing",
-        location: "Looney Tunes, CA"
+        location: "Looney Tunes, CA",
+        id: 5
       }
     ]
   }
@@ -49,7 +55,6 @@ class App extends React.Component {
   componentDidMount() {
     const employeeJSON = localStorage.getItem("employees");
     const employeeListFromBrowser = JSON.parse(employeeJSON);
-    console.log(employeeListFromBrowser);
     if (employeeListFromBrowser) {
       this.setState({employees: employeeListFromBrowser});
     }
@@ -62,10 +67,15 @@ class App extends React.Component {
   }
 
   addNewEmployee = (newEmployee) => {
+    newEmployee.id = this.state.employees.length;
     let employeeList = this.state.employees;
     employeeList.push(newEmployee);
     this.setState({employees: employeeList});
   };
+
+  deleteEmployee(employeeToDelete) {
+    console.log(employeeToDelete);
+  }
 
   render() {
     return (
@@ -78,7 +88,9 @@ class App extends React.Component {
             name={employee.name}
             role={employee.role}
             department={employee.department}
-            location={employee.location} />
+            location={employee.location}
+            id={employee.id}
+            deleteItem={this.deleteEmployee} />
         )}
       </div>
     );

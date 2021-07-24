@@ -6,7 +6,8 @@ class AddEmployee extends React.Component {
     name: "",
     role: "",
     department: "",
-    location: ""
+    location: "",
+    id: null
   };
 
   onFormSubmit = (event) => {
@@ -16,7 +17,8 @@ class AddEmployee extends React.Component {
       name: "",
       role: "",
       department: "",
-      location: ""
+      location: "",
+      id: null
     })
   }
 
