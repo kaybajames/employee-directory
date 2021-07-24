@@ -48,7 +48,8 @@ class App extends React.Component {
         location: "Looney Tunes, CA",
         id: 5
       }
-    ]
+    ],
+    locations: []
   }
 
   // employee list created in localStorage to demonstrate employee modification
@@ -58,6 +59,17 @@ class App extends React.Component {
     if (employeeListFromBrowser) {
       this.setState({employees: employeeListFromBrowser});
     }
+
+    let employeeList = this.state.employees;
+    let locationList = this.state.locations;
+
+    employeeList.forEach(function(employee) {
+      if (!locationList.includes(employee.location)) {
+        locationList.push(employee.location);
+      }
+    })
+
+    this.setState({locations: locationList});
   }
 
   // likewise, demonstrating adding employees
