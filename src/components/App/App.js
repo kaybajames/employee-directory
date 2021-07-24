@@ -96,7 +96,6 @@ class App extends React.Component {
 
   filterLocation = (locationToFilter) => {
     this.setState({locationFilter: locationToFilter});
-    console.log("filtering location", locationToFilter);
   }
 
   // I'd ideally finish my lil CRUD app I ended up with but for time constraints

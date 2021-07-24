@@ -30,8 +30,6 @@ class EmployeeEntry extends React.Component {
       location = <p className="col-12 col-md-4">Location: {this.props.location}</p>
     }
 
-    console.log(this.props.name, this.props.location, this.props.visible);
-
     return (
       <div className="employee-entry row justify-content-start" style={this.props.visible ? {display:"flex"} : {display:"none"}}>
         {name}
