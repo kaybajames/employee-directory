@@ -73,8 +73,10 @@ class App extends React.Component {
     this.setState({employees: employeeList});
   };
 
-  deleteEmployee(employeeToDelete) {
-    console.log(employeeToDelete);
+  deleteEmployee = (employeeToDelete) => {
+    let employeeList = this.state.employees;
+    let newEmployeeList = employeeList.splice(employeeToDelete, 1);
+    this.setState({employees: employeeList});
   }
 
   render() {
