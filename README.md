@@ -1,6 +1,6 @@
 # Sample Employee Directory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -18,3 +18,7 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+-----------------------
+
+The employees are stored in the browser's local storage. If you would like to revert to the defauilt list of employees, you can do so by clearing the local storage.

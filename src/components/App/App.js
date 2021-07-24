@@ -2,6 +2,7 @@ import '../../assets/css/App.css';
 import React from 'react';
 import EmployeeEntry from '../EmployeeEntry/EmployeeEntry.js';
 import AddEmployee from '../AddEmployee/AddEmployee.js';
+import LocationListItem from '../LocationListItem/LocationListItem.js';
 
 class App extends React.Component {
   state = {
@@ -49,11 +50,12 @@ class App extends React.Component {
         id: 5
       }
     ],
-    locations: []
+    employeeLocations: [],
+    locationFilter: ""
   }
 
-  // employee list created in localStorage to demonstrate employee modification
   componentDidMount() {
+    // employee list created in localStorage to demonstrate employee modification
     const employeeJSON = localStorage.getItem("employees");
     const employeeListFromBrowser = JSON.parse(employeeJSON);
     if (employeeListFromBrowser) {
@@ -61,15 +63,16 @@ class App extends React.Component {
     }
 
     let employeeList = this.state.employees;
-    let locationList = this.state.locations;
+    let LocationListItem = this.state.employeeLocations;
 
+    // breaking out locations to create lication filter elements
     employeeList.forEach(function(employee) {
-      if (!locationList.includes(employee.location)) {
-        locationList.push(employee.location);
+      if (!LocationListItem.includes(employee.location)) {
+        LocationListItem.push(employee.location);
       }
     })
 
-    this.setState({locations: locationList});
+    this.setState({employeeLocations: LocationListItem});
   }
 
   // likewise, demonstrating adding employees
@@ -87,15 +90,32 @@ class App extends React.Component {
 
   deleteEmployee = (employeeToDelete) => {
     let employeeList = this.state.employees;
-    let newEmployeeList = employeeList.splice(employeeToDelete, 1);
+    employeeList.splice(employeeToDelete, 1);
     this.setState({employees: employeeList});
   }
+
+  filterLocation = (locationToFilter) => {
+    this.setState({locationFilter: locationToFilter});
+    console.log("filtering location", locationToFilter);
+  }
+
+  // I'd ideally finish my lil CRUD app I ended up with but for time constraints
 
   render() {
     return (
       <div className="App container-fluid">
         <h1 className="text-center">Employee Directory</h1>
         <AddEmployee onSubmit={this.addNewEmployee} />
+
+        {this.state.employeeLocations && this.state.employeeLocations.map(location =>
+          <LocationListItem
+            currentLocation={location}
+            filterLocation={this.filterLocation} />
+        )}
+
+        <LocationListItem
+          currentLocation={""}
+          filterLocation = {this.filterLocation} />
 
         {this.state.employees && this.state.employees.map(employee =>
           <EmployeeEntry
@@ -104,7 +124,8 @@ class App extends React.Component {
             department={employee.department}
             location={employee.location}
             id={employee.id}
-            deleteItem={this.deleteEmployee} />
+            deleteItem={this.deleteEmployee}
+            visible={employee.location.includes(this.state.locationFilter)} />
         )}
       </div>
     );
